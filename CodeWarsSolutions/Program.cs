@@ -8,18 +8,18 @@ namespace Kata
     {
 
         #region Fix My Phone Number
-        public String IsItANum(string str)
-        {
-            var arr = str.ToCharArray();
-            List<char> list = new List<char>();
+        //public String IsItANum(string str)
+        //{
+        //    var arr = str.ToCharArray();
+        //    List<char> list = new List<char>();
 
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (Char.IsDigit(arr[i])) list.Add(arr[i]);
-            }
+        //    for (int i = 0; i < arr.Length; i++)
+        //    {
+        //        if (Char.IsDigit(arr[i])) list.Add(arr[i]);
+        //    }
 
-            return list.Count == 11 && list.IndexOf('0') == 0 ? string.Join("", list.ToArray()) : "Not a phone number";
-        }
+        //    return list.Count == 11 && list.IndexOf('0') == 0 ? string.Join("", list.ToArray()) : "Not a phone number";
+        //}
 
 
         #endregion
