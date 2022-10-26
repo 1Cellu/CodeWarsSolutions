@@ -2,17 +2,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Kata
 {
     public class Kata
     {
+        #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+
+        public long[] SumDigPow(long a, long b)
+        {
+            double elevator = 1;
+            var result = new long();
+            List<long> list = new List<long>();
+            
+
+            while (a < b)
+            {
+                var arr = a;
+                List<long> listOfInts = new List<long>();
+                while (arr > 0)
+                {
+                    listOfInts.Add(arr % 10);
+                    arr = arr / 10;
+                }
+                listOfInts.Reverse();
+
+                foreach (int num in listOfInts)
+                {
+                    double o = Convert.ToDouble(num);
+                    double r = Math.Pow(o, elevator);
+                    result += long.Parse(r.ToString());
+                    elevator++;
+                }
+
+                if (a == result)
+                {
+                    list.Add(result);
+                }
+                result = 0l;
+                elevator = 1;
+                a++;            
+            }
+
+            long[] resultado = list.ToArray();
+
+            return resultado;
+        }
+
+
+        #endregion
 
         #region You only need one
         //public bool Check(object[] a, object x)
         //{
         //    return (a.Contains(x)) ? true : false;
         //}
+
+        //return a.Contains(x);
+
+        // public static bool Check(object[] a, object v) => a.Contains(v);
 
         #endregion
 

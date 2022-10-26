@@ -7,6 +7,14 @@ namespace Program
     {
         static void Main(string[] args)
         {
+            #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+
+            var instance = new Kata.Kata();
+            long[] arr = { 1, 2, 3 };
+            instance.SumDigPow(1, 20);
+
+            #endregion
+
             #region You only need one
 
             //var instance = new Kata.Kata();
