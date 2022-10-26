@@ -7,11 +7,16 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
 
             var instance = new Kata.Kata();
-            long[] arr = { 1, 2, 3 };
-            instance.SumDigPow(1, 20);
+            instance.Balance("s:\r\n1000.00!=\r\n125 Market !=:125.45\r\n126 Hardware =34.95\r\n127 Video! 7.45\r\n128 Book   :14.32\r\n129 Gasoline ::16.10\r\n1000.00!=");
+
+
+            #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+
+            //var instance = new Kata.Kata();
+            //long[] arr = { 1, 2, 3 };
+            //instance.SumDigPow(1, 20);
 
             #endregion
 

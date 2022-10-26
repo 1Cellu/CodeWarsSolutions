@@ -3,212 +3,235 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace Kata
 {
     public class Kata
     {
-        #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
 
-        public long[] SumDigPow(long a, long b)
+        public string Balance(string book)
         {
-            double elevator = 1;
-            var result = new long();
-            List<long> list = new List<long>();
+            book = book.Replace("!", "").Replace("=", "").Replace(":", "");
+            var lines = book.Split("\r\n");
+            book.Replace("\r\n", "");
+            var result = "";
             
 
-            while (a < b)
+            var balance = Convert.ToDecimal(lines[1]);
+
+            foreach (string line in lines.Skip(2))
             {
-                var arr = a;
-                List<long> listOfInts = new List<long>();
-                while (arr > 0)
-                {
-                    listOfInts.Add(arr % 10);
-                    arr = arr / 10;
-                }
-                listOfInts.Reverse();
-
-                foreach (int num in listOfInts)
-                {
-                    double o = Convert.ToDouble(num);
-                    double r = Math.Pow(o, elevator);
-                    result += long.Parse(r.ToString());
-                    elevator++;
-                }
-
-                if (a == result)
-                {
-                    list.Add(result);
-                }
-                result = 0l;
-                elevator = 1;
-                a++;            
+                var lineArray = line.Split("[ ]+");
+                balance -= Convert.ToDecimal(lineArray[2]);
+                var balanceString = balance.ToString("F").Replace(",", ".");
+                result += lineArray[0] + "_" + lineArray[1] + "_" + lineArray[2] + "_Balance_" + balanceString;
             }
 
-            long[] resultado = list.ToArray();
-
-            return resultado;
+            return result;
         }
+            #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+
+            //public long[] SumDigPow(long a, long b)
+            //{
+            //    double elevator = 1;
+            //    var result = new long();
+            //    List<long> list = new List<long>();
 
 
-        #endregion
+            //    while (a < b)
+            //    {
+            //        var arr = a;
+            //        List<long> listOfInts = new List<long>();
+            //        while (arr > 0)
+            //        {
+            //            listOfInts.Add(arr % 10);
+            //            arr = arr / 10;
+            //        }
+            //        listOfInts.Reverse();
 
-        #region You only need one
-        //public bool Check(object[] a, object x)
-        //{
-        //    return (a.Contains(x)) ? true : false;
-        //}
+            //        foreach (int num in listOfInts)
+            //        {
+            //            double o = Convert.ToDouble(num);
+            //            double r = Math.Pow(o, elevator);
+            //            result += long.Parse(r.ToString());
+            //            elevator++;
+            //        }
 
-        //return a.Contains(x);
+            //        if (a == result)
+            //        {
+            //            list.Add(result);
+            //        }
+            //        result = 0l;
+            //        elevator = 1;
+            //        a++;            
+            //    }
 
-        // public static bool Check(object[] a, object v) => a.Contains(v);
+            //    long[] resultado = list.ToArray();
 
-        #endregion
-
-        #region Fix My Phone Number
-        //public String IsItANum(string str)
-        //{
-        //    var arr = str.ToCharArray();
-        //    List<char> list = new List<char>();
-
-        //    for (int i = 0; i < arr.Length; i++)
-        //    {
-        //        if (Char.IsDigit(arr[i])) list.Add(arr[i]);
-        //    }
-
-        //    return list.Count == 11 && list.IndexOf('0') == 0 ? string.Join("", list.ToArray()) : "Not a phone number";
-        //}
+            //    return resultado;
+            //}
 
 
-        #endregion
+            #endregion
 
-        #region Funny Dots
-        //public string Dot(int n, int m)
-        //{
-        //    var stringConcateneted = "";
+            #region You only need one
+            //public bool Check(object[] a, object x)
+            //{
+            //    return (a.Contains(x)) ? true : false;
+            //}
 
-        //    var firstPoint = true;
-        //    if (firstPoint)
-        //    {
-        //        stringConcateneted += String.Concat(Enumerable.Repeat("+---", n)) + "+\n" +
-        //                              String.Concat(Enumerable.Repeat("| o ", n)) + "|\n" +
-        //                              String.Concat(Enumerable.Repeat("+---", n)) + "+";
+            //return a.Contains(x);
 
-        //        Console.WriteLine(stringConcateneted);
-        //        firstPoint = false;
-        //    }
+            // public static bool Check(object[] a, object v) => a.Contains(v);
 
-        //    if (!firstPoint)
-        //    {
-        //        stringConcateneted += String.Concat(Enumerable.Repeat("\n" + String.Concat(Enumerable.Repeat("| o ", n)) + "|\n" +
-        //                              String.Concat(Enumerable.Repeat("+---", n)) + "+", (m - 1)));
+            #endregion
 
-        //        Console.WriteLine(stringConcateneted);
-        //    }
-        //    return String.Empty;
-        //}
-        #endregion
+            #region Fix My Phone Number
+            //public String IsItANum(string str)
+            //{
+            //    var arr = str.ToCharArray();
+            //    List<char> list = new List<char>();
 
-        #region +1Array
-        //public int[] UpArray1(int[] num)
-        //{
+            //    for (int i = 0; i < arr.Length; i++)
+            //    {
+            //        if (Char.IsDigit(arr[i])) list.Add(arr[i]);
+            //    }
 
-        //    var total = "";
-        //    if (num != null)
-        //    {
-        //        for (int i = 0; i < num.Length; i++)
-        //        {
-        //            if (num[i] >= 0 && num[i] <= 10)
-        //            {
-        //                total += num[i].ToString();
-        //            }
-        //            else
-        //            {
-        //                return null;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //    if (total != null && total != "")
-        //    {
-        //        var arrayResult = total.ToString().Select(o => Convert.ToInt32(o) - 48).ToArray();
-        //        if (arrayResult[arrayResult.Length - 1] == 9)
-        //        {
-        //            if (int.TryParse(total, System.Globalization.NumberStyles.HexNumber, null, out int i))
-        //            {
-        //                var result = Convert.ToInt64(total) + 1;
-        //                arrayResult = result.ToString().Select(o => Convert.ToInt32(o) - 48).ToArray();
-        //            }
-        //            else
-        //            {
-        //                arrayResult[arrayResult.Length - 1] = 0;
-        //                arrayResult[arrayResult.Length - 2] = arrayResult[arrayResult.Length - 2] + 1;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            arrayResult[arrayResult.Length - 1] = arrayResult[arrayResult.Length - 1] + 1;
-        //        }
-        //        return arrayResult;
-        //    }
-        //    return null;
-        //}
+            //    return list.Count == 11 && list.IndexOf('0') == 0 ? string.Join("", list.ToArray()) : "Not a phone number";
+            //}
 
-        //public int[] UpArray2(int[] num)
-        //{
-        //    if (num.Length == 0 || num.Any(a => a < 0 || a > 9))
-        //    {
-        //        return null;
-        //    }
 
-        //    for (var i = num.Length - 1; i >= 0; i--)
-        //    {
-        //        if (num[i] == 9)
-        //        {
-        //            num[i] = 0;
-        //        }
-        //        else
-        //        {
-        //            num[i]++;
-        //            return num;
-        //        }
-        //    }
-        //    return new[] { 1 }.Concat(num).ToArray();
-        //}
+            #endregion
 
-        //public int[] UpArray3(int[] num)
-        //{
-        //    string joinedNumber = string.Join(string.Empty, num);
-        //    if (num.Length == 0 || joinedNumber.Length != num.Length)
-        //    {
-        //        // Means num was empty or there was a '-' or an integer greater than 9 in num
-        //        return null;
-        //    }
+            #region Funny Dots
+            //public string Dot(int n, int m)
+            //{
+            //    var stringConcateneted = "";
 
-        //    List<int> result = new List<int>();
+            //    var firstPoint = true;
+            //    if (firstPoint)
+            //    {
+            //        stringConcateneted += String.Concat(Enumerable.Repeat("+---", n)) + "+\n" +
+            //                              String.Concat(Enumerable.Repeat("| o ", n)) + "|\n" +
+            //                              String.Concat(Enumerable.Repeat("+---", n)) + "+";
 
-        //    // Starting with one to add the one
-        //    int carryover = 1;
-        //    for (int i = num.Length - 1; i >= 0; i--)
-        //    {
-        //        int value = num[i] + carryover;
-        //        carryover = value / 10;
-        //        value %= 10;
+            //        Console.WriteLine(stringConcateneted);
+            //        firstPoint = false;
+            //    }
 
-        //        result.Insert(0, value);
-        //    }
+            //    if (!firstPoint)
+            //    {
+            //        stringConcateneted += String.Concat(Enumerable.Repeat("\n" + String.Concat(Enumerable.Repeat("| o ", n)) + "|\n" +
+            //                              String.Concat(Enumerable.Repeat("+---", n)) + "+", (m - 1)));
 
-        //    if (carryover > 0)
-        //    {
-        //        result.Insert(0, carryover);
-        //    }
+            //        Console.WriteLine(stringConcateneted);
+            //    }
+            //    return String.Empty;
+            //}
+            #endregion
 
-        //    return result.ToArray();
-        //}
+            #region +1Array
 
-        #endregion
-    }
+            //public int[] UpArray1(int[] num)
+            //{
+
+            //    var total = "";
+            //    if (num != null)
+            //    {
+            //        for (int i = 0; i < num.Length; i++)
+            //        {
+            //            if (num[i] >= 0 && num[i] <= 10)
+            //            {
+            //                total += num[i].ToString();
+            //            }
+            //            else
+            //            {
+            //                return null;
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        return null;
+            //    }
+            //    if (total != null && total != "")
+            //    {
+            //        var arrayResult = total.ToString().Select(o => Convert.ToInt32(o) - 48).ToArray();
+            //        if (arrayResult[arrayResult.Length - 1] == 9)
+            //        {
+            //            if (int.TryParse(total, System.Globalization.NumberStyles.HexNumber, null, out int i))
+            //            {
+            //                var result = Convert.ToInt64(total) + 1;
+            //                arrayResult = result.ToString().Select(o => Convert.ToInt32(o) - 48).ToArray();
+            //            }
+            //            else
+            //            {
+            //                arrayResult[arrayResult.Length - 1] = 0;
+            //                arrayResult[arrayResult.Length - 2] = arrayResult[arrayResult.Length - 2] + 1;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            arrayResult[arrayResult.Length - 1] = arrayResult[arrayResult.Length - 1] + 1;
+            //        }
+            //        return arrayResult;
+            //    }
+            //    return null;
+            //}
+
+            //public int[] UpArray2(int[] num)
+            //{
+            //    if (num.Length == 0 || num.Any(a => a < 0 || a > 9))
+            //    {
+            //        return null;
+            //    }
+
+            //    for (var i = num.Length - 1; i >= 0; i--)
+            //    {
+            //        if (num[i] == 9)
+            //        {
+            //            num[i] = 0;
+            //        }
+            //        else
+            //        {
+            //            num[i]++;
+            //            return num;
+            //        }
+            //    }
+            //    return new[] { 1 }.Concat(num).ToArray();
+            //}
+
+            //public int[] UpArray3(int[] num)
+            //{
+            //    string joinedNumber = string.Join(string.Empty, num);
+            //    if (num.Length == 0 || joinedNumber.Length != num.Length)
+            //    {
+            //        // Means num was empty or there was a '-' or an integer greater than 9 in num
+            //        return null;
+            //    }
+
+            //    List<int> result = new List<int>();
+
+            //    // Starting with one to add the one
+            //    int carryover = 1;
+            //    for (int i = num.Length - 1; i >= 0; i--)
+            //    {
+            //        int value = num[i] + carryover;
+            //        carryover = value / 10;
+            //        value %= 10;
+
+            //        result.Insert(0, value);
+            //    }
+
+            //    if (carryover > 0)
+            //    {
+            //        result.Insert(0, carryover);
+            //    }
+
+            //    return result.ToArray();
+            //}
+
+            #endregion
+        }
 }
