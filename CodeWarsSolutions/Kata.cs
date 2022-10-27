@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace Kata
 {
@@ -12,23 +14,35 @@ namespace Kata
 
         public string Balance(string book)
         {
-            book = book.Replace("!", "").Replace("=", "").Replace(":", "");
-            var lines = book.Split("\r\n");
-            book.Replace("\r\n", "");
-            var result = "";
-            
+            //book = book.Replace("!", " ").Replace("=", " ").Replace(":", " ").Replace("  ", " ").Replace("  ", " ");
+            //var lines = book.Split("\n");
+            //book.Replace("\r\n", "");
+            //var result = "";
 
-            var balance = Convert.ToDecimal(lines[1]);
+            //var originalBalance = "Original Balance: " + lines[1].ToString() + "\r\n";
+            //var balance = Decimal.Parse(lines[0], CultureInfo.InvariantCulture);
+            //var liness = lines[1..];
+            //var spend = 0.00m;
+            //var i = 0;
 
-            foreach (string line in lines.Skip(2))
-            {
-                var lineArray = line.Split("[ ]+");
-                balance -= Convert.ToDecimal(lineArray[2]);
-                var balanceString = balance.ToString("F").Replace(",", ".");
-                result += lineArray[0] + "_" + lineArray[1] + "_" + lineArray[2] + "_Balance_" + balanceString;
-            }
+            //foreach (string line in liness)
+            //{
+            //    var lineArray = line.Split(" ");
+            //    balance -= Decimal.Parse(lineArray[2], CultureInfo.InvariantCulture);
+            //    spend += Decimal.Parse(lineArray[2], CultureInfo.InvariantCulture);
+            //    var balanceString = balance.ToString("F").Replace(",", ".");
+            //    result += lineArray[0] + " " + lineArray[1] + " " + lineArray[2] + " Balance " + balanceString + "\r\n";
+            //    i++;
+            //}
 
-            return result;
+            //var averageExpense = (spend / i).ToString("F2");
+
+            //result = originalBalance + result + "Total expense  " + spend.ToString() + "\n" + "Average expense  " + averageExpense;
+
+            Regex r = new Regex(@"/^[a-z0-9]+$/i", RegexOptions.IgnoreCase);
+            var s = r.Match(book);
+
+            return "";
         }
             #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
 
