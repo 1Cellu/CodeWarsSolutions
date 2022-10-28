@@ -8,8 +8,15 @@ namespace Program
         static void Main(string[] args)
         {
 
-            var instance = new Kata.Kata();
-            Console.WriteLine(instance.Balance("1000.00 !=\n125 Market !=:125.45\n126 Hardware = 34.95\n127 Video! 7.45\n128 Book: 14.32\n129 Gasoline::16.10"));
+            #region ParseAndOperate
+
+            //var instance = new Kata.Kata();
+            //instance.Parse("issodddd");
+
+            #endregion
+
+            //var instance = new Kata.Kata();
+            //Console.WriteLine(instance.Balance("1000.00 !=\n125 Market !=:125.45\n126 Hardware = 34.95\n127 Video! 7.45\n128 Book: 14.32\n129 Gasoline::16.10"));
 
             #region Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
 
