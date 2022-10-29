@@ -8,6 +8,9 @@ namespace Program
         static void Main(string[] args)
         {
 
+            var n = new Kata.Kata();
+            n.Score(new int[] { 5, 1, 1, 6, 2 });
+
             #region ParseAndOperate
 
             //var instance = new Kata.Kata();

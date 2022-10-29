@@ -11,6 +11,39 @@ namespace Kata
 {
     public class Kata
     {
+        #region Greed is Good
+        public int Score(int[] dice)
+        {
+            Array.Sort(dice);
+            var score = 0;
+
+            if ((dice[0] == dice[1] && dice[1] == dice[2]) ||
+                (dice[1] == dice[2] && dice[2] == dice[3]) ||
+                (dice[2] == dice[3] && dice[3] == dice[4]))
+            {
+                if (dice[2] != 1) score += dice[2] * 100;
+                else score += 1000;
+            }
+
+
+            if (!(dice.Count(x => x == 1) == 3) && dice.Contains(1))
+            {
+                if (dice.Count(x => x == 1) == 5 || dice.Count(x => x == 1) == 2) score += 200;
+                else score += 100;
+
+            }
+
+            if (dice.Count(x => x == 5) == 1 || dice.Count(x => x == 5) == 4
+                || dice.Count(x => x == 5) == 5 || dice.Count(x => x == 5) == 2)
+            {
+                if (dice.Count(x => x == 5) == 5 || dice.Count(x => x == 5) == 2) score += 100;
+                else score += 50;
+            }
+
+            return score;
+        }
+        #endregion
+
         #region ParseAndOperate
         //public int[] Parse(string data)
         //{
