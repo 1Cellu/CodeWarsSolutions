@@ -11,37 +11,92 @@ namespace Kata
 {
     public class Kata
     {
-        #region Greed is Good
-        public int Score(int[] dice)
+
+        public class Sudoku
         {
-            Array.Sort(dice);
-            var score = 0;
-
-            if ((dice[0] == dice[1] && dice[1] == dice[2]) ||
-                (dice[1] == dice[2] && dice[2] == dice[3]) ||
-                (dice[2] == dice[3] && dice[3] == dice[4]))
+            public string DoneOrNot(int[][] board)
             {
-                if (dice[2] != 1) score += dice[2] * 100;
-                else score += 1000;
+                var validSudoku = true;
+
+                foreach (int[] i in board)
+                {
+                    var validValues = i.Any(x => x < 0 || x > 10);
+                    if (!validValues)
+                    {
+                        var uniqueValues = i.Distinct().Count() == i.Count();
+                        if (!uniqueValues)
+                        {
+                            validSudoku = false;
+                        }
+                    }
+                    else 
+                    {
+                        validSudoku = false;
+                    }
+                }
+
+                int nCols = board[0].Length;
+                List<int> valueByPosition = new List<int>();
+                int k = 0;
+
+                for (int j = 0; j <= board[0].Length; j++)
+                {
+                    valueByPosition.Add(board[k][j]);
+                    k++;
+                }
+
+                return "";
             }
-
-
-            if (!(dice.Count(x => x == 1) == 3) && dice.Contains(1))
-            {
-                if (dice.Count(x => x == 1) == 5 || dice.Count(x => x == 1) == 2) score += 200;
-                else score += 100;
-
-            }
-
-            if (dice.Count(x => x == 5) == 1 || dice.Count(x => x == 5) == 4
-                || dice.Count(x => x == 5) == 5 || dice.Count(x => x == 5) == 2)
-            {
-                if (dice.Count(x => x == 5) == 5 || dice.Count(x => x == 5) == 2) score += 100;
-                else score += 50;
-            }
-
-            return score;
         }
+
+        //public bool Alphanumeric(string str)
+        //{
+        //    return Regex.IsMatch(str.ToString().ToLower(), @"^[a-zA-Z0-9_]*$") ? true : false;
+        //}
+
+        #region Valid Parentheses
+        //public static bool ValidParentheses(string input)
+        //{
+        //    var arr = input.ToString().Split().ToArray();
+        //    Array.Sort(arr);
+        //    var num = (decimal)arr.Length / 2;
+        //    var dec = (int)Math.Floor(num);
+        //    if (arr[dec] == "(" && arr[dec] == ")") return true;
+        //    return false;
+        //}
+        #endregion
+
+        #region Greed is Good
+        //public int Score(int[] dice)
+        //{
+        //    Array.Sort(dice);
+        //    var score = 0;
+
+        //    if ((dice[0] == dice[1] && dice[1] == dice[2]) ||
+        //        (dice[1] == dice[2] && dice[2] == dice[3]) ||
+        //        (dice[2] == dice[3] && dice[3] == dice[4]))
+        //    {
+        //        if (dice[2] != 1) score += dice[2] * 100;
+        //        else score += 1000;
+        //    }
+
+
+        //    if (!(dice.Count(x => x == 1) == 3) && dice.Contains(1))
+        //    {
+        //        if (dice.Count(x => x == 1) == 5 || dice.Count(x => x == 1) == 2) score += 200;
+        //        else score += 100;
+
+        //    }
+
+        //    if (dice.Count(x => x == 5) == 1 || dice.Count(x => x == 5) == 4
+        //        || dice.Count(x => x == 5) == 5 || dice.Count(x => x == 5) == 2)
+        //    {
+        //        if (dice.Count(x => x == 5) == 5 || dice.Count(x => x == 5) == 2) score += 100;
+        //        else score += 50;
+        //    }
+
+        //    return score;
+        //}
         #endregion
 
         #region ParseAndOperate
