@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
@@ -12,41 +13,83 @@ namespace Kata
     public class Kata
     {
 
-        public class Sudoku
+        public string DoneOrNot(int[][] board)
         {
-            public string DoneOrNot(int[][] board)
-            {
-                var validSudoku = true;
+            var validSudoku = true;
 
-                foreach (int[] i in board)
+            foreach (int[] i in board)
+            {
+                var validValues = i.Any(x => x < 0 || x > 10);
+                if (!validValues)
                 {
-                    var validValues = i.Any(x => x < 0 || x > 10);
-                    if (!validValues)
-                    {
-                        var uniqueValues = i.Distinct().Count() == i.Count();
-                        if (!uniqueValues)
-                        {
-                            validSudoku = false;
-                        }
-                    }
-                    else 
+                    var uniqueValues = i.Distinct().Count() == i.Count();
+                    if (!uniqueValues)
                     {
                         validSudoku = false;
                     }
                 }
-
-                int nCols = board[0].Length;
-                List<int> valueByPosition = new List<int>();
-                int k = 0;
-
-                for (int j = 0; j <= board[0].Length; j++)
+                else
                 {
-                    valueByPosition.Add(board[k][j]);
-                    k++;
+                    validSudoku = false;
                 }
-
-                return "";
             }
+
+            if (validSudoku)
+            {
+                List<int> valueByPosition = new List<int>();
+                for (int j = 0; j < board.Length; j++)
+                {
+                    for (int m = 0; m < 9; m++)
+                    {
+                        valueByPosition.Add(board[m][j]);
+                    }
+                    if (valueByPosition.Count >= 9)
+                    {
+                        if (valueByPosition.Distinct().Count() == 9)
+                        {
+                            valueByPosition.Clear();
+                        }
+                        else
+                        {
+                            validSudoku = false;
+                            break;
+                        };
+                    }
+                }
+            }
+
+            if (validSudoku)
+            {
+                List<int> valueByQuadrant = new List<int>();
+                var control = 0;
+                while (control < 81)
+                {
+                    for (int j = control / 3; valueByQuadrant.Count < 9;)
+                    {
+                        int m = 0;
+                        for (m = j / 3; m < j / 3 + 3; m++)
+                        {
+                            valueByQuadrant.Add(board[m][j]);  
+                            control++;
+                        }
+                        j++;
+                    }
+                    if (valueByQuadrant.Count >= 9)
+                    {
+                        if (valueByQuadrant.Distinct().Count() == 9)
+                        {
+                            valueByQuadrant.Clear();
+                        }
+                        else
+                        {
+                            validSudoku = false;
+                            break;
+                        };
+                    }
+                }
+            }
+            return validSudoku ? "Finished!" : "Try again!";
+
         }
 
         //public bool Alphanumeric(string str)
