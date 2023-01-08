@@ -13,89 +13,146 @@ namespace Kata
     public class Kata
     {
 
-        public string DoneOrNot(int[][] board)
+        public string DuplicateEncode(string word)
         {
-            var validSudoku = true;
-
-            foreach (int[] i in board)
+            var wordTrated = word.ToLower();
+            var chars = wordTrated.Distinct();
+            var arr = wordTrated.ToArray();
+            var retorno = wordTrated;
+            foreach (char c in arr)
             {
-                var validValues = i.Any(x => x < 0 || x > 10);
-                if (!validValues)
+                if(arr.Count(x => x == c) > 1)
                 {
-                    var uniqueValues = i.Distinct().Count() == i.Count();
-                    if (!uniqueValues)
-                    {
-                        validSudoku = false;
-                    }
+                    retorno = retorno.Replace(c, ')');
                 }
                 else
                 {
-                    validSudoku = false;
+                    retorno = retorno.Replace(c, '(');
                 }
             }
-
-            if (validSudoku)
-            {
-                List<int> valueByPosition = new List<int>();
-                for (int j = 0; j < board.Length; j++)
-                {
-                    for (int m = 0; m < 9; m++)
-                    {
-                        valueByPosition.Add(board[m][j]);
-                    }
-                    if (valueByPosition.Count >= 9)
-                    {
-                        if (valueByPosition.Distinct().Count() == 9)
-                        {
-                            valueByPosition.Clear();
-                        }
-                        else
-                        {
-                            validSudoku = false;
-                            break;
-                        };
-                    }
-                }
-            }
-
-            if (validSudoku)
-            {
-                List<int> valueByQuadrant = new List<int>();
-                var control = 0;
-                while (control < 81)
-                {
-                    for (int j = control / 3; valueByQuadrant.Count < 9;)
-                    {
-                        int m = 0;
-                        for (m = j / 3; m < j / 3 + 3; m++)
-                        {
-                            valueByQuadrant.Add(board[m][j]);  
-                            control++;
-                        }
-                        j++;
-                    }
-                    if (valueByQuadrant.Count >= 9)
-                    {
-                        if (valueByQuadrant.Distinct().Count() == 9)
-                        {
-                            valueByQuadrant.Clear();
-                        }
-                        else
-                        {
-                            validSudoku = false;
-                            break;
-                        };
-                    }
-                }
-            }
-            return validSudoku ? "Finished!" : "Try again!";
-
+            return retorno;
         }
 
+        #region DescendingOrder
+
+        //public int DescendingOrder(int num)
+        //{
+        //    var text = "";
+        //    var arr = num.ToString().OrderByDescending(c => c).ToArray();
+        //    foreach (int i in arr)
+        //    {
+        //        text += i - 48;
+        //    }
+        //    return Convert.ToInt32(text);
+        //}
+
+        #endregion
+
+        #region MostFreq
+
+        //public List<string> MostFreq(string s)
+        //{
+        //    List<string> frequents = s.Replace("#", "").Replace("\"", "").Replace("/", "").Replace(".", "").Replace("\r", "").Replace("\n", "").Replace(",","").Split(" ").ToList();
+        //    List<string> unics = frequents.Distinct().ToList();
+        //    for (int i=0; i<frequents.Count; i++)
+        //    {
+        //        frequents.Count(unics[i]);
+        //    }
+
+        //    Console.ReadLine();
+
+        //    return frequents;
+        //}
+        #endregion
+
+        #region DoneOrNot
+        //public string DoneOrNot(int[][] board)
+        //{
+        //    var validSudoku = true;
+
+        //    foreach (int[] i in board)
+        //    {
+        //        var validValues = i.Any(x => x < 0 || x > 10);
+        //        if (!validValues)
+        //        {
+        //            var uniqueValues = i.Distinct().Count() == i.Count();
+        //            if (!uniqueValues)
+        //            {
+        //                validSudoku = false;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            validSudoku = false;
+        //        }
+        //    }
+
+        //    if (validSudoku)
+        //    {
+        //        List<int> valueByPosition = new List<int>();
+        //        for (int j = 0; j < board.Length; j++)
+        //        {
+        //            for (int m = 0; m < 9; m++)
+        //            {
+        //                valueByPosition.Add(board[m][j]);
+        //            }
+        //            if (valueByPosition.Count >= 9)
+        //            {
+        //                if (valueByPosition.Distinct().Count() == 9)
+        //                {
+        //                    valueByPosition.Clear();
+        //                }
+        //                else
+        //                {
+        //                    validSudoku = false;
+        //                    break;
+        //                };
+        //            }
+        //        }
+        //    }
+
+        //    if (validSudoku)
+        //    {
+        //        List<int> valueByQuadrant = new List<int>();
+        //        var control = 0;
+        //        while (control < 81)
+        //        {
+        //            for (int j = control / 3; valueByQuadrant.Count < 9;)
+        //            {
+        //                int m = 0;
+        //                for (m = j / 3; m < j / 3 + 3; m++)
+        //                {
+        //                    valueByQuadrant.Add(board[m][j]);  
+        //                    control++;
+        //                }
+        //                j++;
+        //            }
+        //            if (valueByQuadrant.Count >= 9)
+        //            {
+        //                if (valueByQuadrant.Distinct().Count() == 9)
+        //                {
+        //                    valueByQuadrant.Clear();
+        //                }
+        //                else
+        //                {
+        //                    validSudoku = false;
+        //                    break;
+        //                };
+        //            }
+        //        }
+        //    }
+        //    return validSudoku ? "Finished!" : "Try again!";
+
+        //}
+
+        #endregion
+
+        #region Alphanumerics
         //public bool Alphanumeric(string str)
         //{
         //    return Regex.IsMatch(str.ToString().ToLower(), @"^[a-zA-Z0-9_]*$") ? true : false;
         //}
+        #endregion
 
         #region Valid Parentheses
         //public static bool ValidParentheses(string input)
